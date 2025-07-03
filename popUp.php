@@ -16,7 +16,7 @@ $dao->connection();
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Commander</button>
 <?php endif ?> -->
 <main id="mainPopUp">
-    <form action="">
+    <form action="cart.php" metod="post">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     
           <div class="modal-dialog" id="divCentrePopUp">
@@ -43,7 +43,7 @@ $dao->connection();
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-primary">Envoyer la commande</button>
+                <button type="submit" class="btn btn-primary">Envoyer la commande</button>
               </div>
             </div>
           </div>

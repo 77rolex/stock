@@ -1,5 +1,4 @@
 <?php
-session_start(); //debut de session
 if ($_POST) {
   require_once("dao.php"); //se connecte au DB
   $dao=new DAOStock();
