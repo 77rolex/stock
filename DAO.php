@@ -76,9 +76,9 @@
 								JOIN reserves r ON r.id_reserve = p.reserve_id
 								WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search
 								");
-	$stmt = $this->$dbh -> prepare($search_query);
-	$stmt -> execute(["search" => "%$search"]); // %$search% qui contient le mot dans search
-	$produit = $stmt -> fetchAll();
+	$stmt = $this->$dbh->prepare($search_query);
+	$stmt->execute(["search" => "%$search"]); // %$search% qui contient le mot dans search
+	$produit = $stmt->fetchAll();
 	return $produit;
 	}
 
