@@ -458,8 +458,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `user_name`, `pwd`, `role`) VALUES
+-- pwd stagiaire = stage , formateur = formation
 (1, 'stagiaire', '$2y$10$wGcEYJ3A5kOUXFELbTf8GOaJjv8oSll.kaTxS3LgGsjyjTtWTuDGy', 'stagiaire'),
-(2, 'formateur', '$2y$10$tyYpZzoJdeOyszjilk.8B.DaVsPfD.W8x6pMBr/vJxuii7jMb1as6', 'formateur');
+(2, 'formateur', '$2y$10$itPG4NBCrv1VFGd87bghyORvEC.r3j7u91wHGbgPbO93pZpwYU7Dq', 'formateur');
 
 --
 -- Index pour les tables déchargées
