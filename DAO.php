@@ -84,6 +84,12 @@
 	
 
 
+	public function getListOfProducts(){
+		$listOfProducts=$this->dbh->prepare("SELECT nom_produit, id_produit FROM produits ORDER BY nom_produit ASC;");
+		$listOfProducts->execute();
+		return $listOfProducts->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function deconnection() {
 		$this->dbh=null;
 	}
