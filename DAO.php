@@ -53,6 +53,8 @@
 		return $getColor->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+
+
 	public function deconnection() {
 		$this->dbh=null;
 	}
