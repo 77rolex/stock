@@ -3,44 +3,15 @@ session_start();
 // Connexion a la base de donnees avec gestion des erreurs
 // username = formateur, pwd = formation
 require_once("DAO.php");
+$dao=new DAOStock();
+$dao->connection();
 
 // Le formateur de son stock par un tableau de bord.
 // Ce tbord contiendra tous les matériels (nom, unité, quantité), la localisation (la réserve) identifiable par couleur.
-
-
-// à inclure dans DAO remplacer par $produits = $dao -> getProduits()
-public function getProduits() {
-	$produits = $dbh -> prepare("SELECT nom_produit, unite, qt, r.color
-                            FROM produits p
-                            JOIN category c ON c.id_category = p.category_id
-                            JOIN reserves r ON r.id_reserve = p.reserve_id
-                            ");
-$produits->execute();
-}
-
-    /* test
-foreach ($produits as $produit) {
-    echo "Nom du produit : " . ($produit['nom_produit']) . " Unité : " . ($produit['unite']) . " Qty : " . ($produit['qt']) ." Couleur : " . ($produit['color']) . "<br>";
-}
-    */
-
-// à inclure dans DAO remplacer par $Searchbar = $dao -> getSearchbar()
+$produits=$dao->getProduits();
+ 
 // recupere la valeur saisie dans searchbar ou affiche vide
-public function getSearchbar() {
-    $search = $_GET['search'] ? "";
-
-// affiche seulement depuis searchbar
-$search_query = ("SELECT nom_produit, unite, qt, r.color
-                            FROM produits p
-                            JOIN category c ON c.id_category = p.category_id
-                            JOIN reserves r ON r.id_reserve = p.reserve_id
-                            WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search
-                            ");
-$stmt = $dbh -> prepare($search_query);
-$stmt -> execute(["search" => "%$search"]); // %$search% qui contient le mot dans search
-
-}
-
+$produit=$dao->getSearchbar()
 
 ?>
 
@@ -65,9 +36,25 @@ $stmt -> execute(["search" => "%$search"]); // %$search% qui contient le mot dan
         <th>Unité</th>
         <th>Qty</th>
         <th>Couleur</th>
-
+        <th>Reserve</th>
+        <th>Category</th>
+        <th>Alerte</th>
     </tr>
-</thead>
+    </thead>
+    <tbody>
+        <?php foreach($produits as $row){ ?>
+         <tr>
+        <td><?php print $row["nom_produit"];?></td>
+        <td><?php print $row["unite"];?></td>
+        <td><?php print $row["qt"];?></td>
+        <td><div style="background-color:<?php print $row["color"];?>;"></div></td>
+        <td><?php print $row["reserve_name"];?></td>
+        <td><?php print $row["nom_category"];?></td>
+        <td><div style="background-color:<?php ("qy" <= "10") ? 'orange' : 'vert';?>"></div></td>
+    </tr>
+    <?php } ?>
+       
+    </tbody>
 
 </table>
 
