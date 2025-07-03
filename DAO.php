@@ -54,7 +54,7 @@
 	}
 
 	public function getProduits() {
-		$produits = $this->dbh -> prepare("SELECT nom_produit, unite, qt, r.color
+		$produits = $this->dbh -> prepare("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
@@ -70,17 +70,18 @@
 		$search = $_GET['search'] ?? "";
 
 	// affiche seulement depuis searchbar
-		$search_query = ("SELECT nom_produit, unite, qt, r.color
+		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
 								WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search
 								");
-	$stmt = $this->$dbh->prepare($search_query);
-	$stmt->execute(["search" => "%$search"]); // %$search% qui contient le mot dans search
-	$produit = $stmt->fetchAll();
-	return $produit;
+		$stmt = $this -> dbh -> prepare($search_query);
+		$stmt->execute(['search' => "%$search%"]); // %$search% qui contient le mot dans search
+		return $stmt->fetchAll();
+		
 	}
+	
 
 
 	public function deconnection() {
