@@ -11,7 +11,7 @@ $dao->connection();
 $produits=$dao->getProduits();
  
 // recupere la valeur saisie dans searchbar ou affiche vide
-$produit=$dao->getSearchbar()
+$produit=$dao->getSearchbar();
 
 ?>
 
