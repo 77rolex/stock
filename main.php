@@ -1,5 +1,3 @@
 <main>
-
-
-    <?php require_once("connection.php"); ?>
+    stockage
 </main>
