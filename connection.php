@@ -9,7 +9,7 @@ if ($_POST) {
   $password=$_POST['exampleInputPassword1']?? '';
 
   $user=$dao->checkLogin($login,$password);
-
+  
   if($user){
       //sauvegarde des donnees d'user dans la session
       $_SESSION['username']=$user['username'];
@@ -27,9 +27,9 @@ if ($_POST) {
 ?>
 
 <?php require_once("header.php"); ?>
-<main>
+<main id="mainConnexion">
 
-  <form action="connection.php" method="post">
+  <form action="connection.php" method="post" id="formConnexion">
     <div class="form-group">
       <label for="exampleInputEmail1">Nom d'utilisateur :</label>
       <input type="text" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" aria-describedby="emailHelp" required>
