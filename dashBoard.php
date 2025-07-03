@@ -10,7 +10,7 @@ $dao->connection();
 $produits=$dao->getProduits();
  
 // recupere la valeur saisie dans searchbar ou affiche vide
-$produit=$dao->getSearchbar();
+$produits=$dao->getSearchbar();
 
 ?>
 
@@ -21,10 +21,23 @@ $produit=$dao->getSearchbar();
 <!-- main -->
 <?php require_once("main.php");?>
 
+<style>
+    tr, td
+    .reserve_color {
+        display: inline-block;
+    }
+
+    .alerte {
+        background-color: #ff6347;
+    }
+</style>
+
 <!-- search bar -->
-<form action="" method="get">
-    <input type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php $search ?>">
+<form method="get">
+    <input type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="">
     <button type="submit">Search</button>
+    <input type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="">
+    <button type="submit">Fixer le seuil</button>
 </form>
 
 <!-- display d_board -->
@@ -41,15 +54,17 @@ $produit=$dao->getSearchbar();
     </tr>
     </thead>
     <tbody>
+        <?php $seuil = $_GET["seuil"] ?? null ?>
         <?php foreach($produits as $row){ ?>
-         <tr>
+            <?php $alerte = ($seuil !== null && is_numeric($seuil) && $row["qt"] < $seuil); ?>
+        <tr class="<?php $alerte ? "alerte" : "" ; ?>">
         <td><?php print $row["nom_produit"];?></td>
         <td><?php print $row["unite"];?></td>
         <td><?php print $row["qt"];?></td>
-        <td><div style="background-color:<?php print $row["color"];?>;"></div></td>
-        <td><?php print $row["reserve_name"];?></td>
+        <td><div class="reserve_color" style="background-color:<?php print $row["color"];?>;"></div>
+        <?php print $row["reserve_name"];?></td>
         <td><?php print $row["nom_category"];?></td>
-        <td><div style="background-color:<?php ("qy" <= "10") ? 'orange' : 'vert';?>"></div></td>
+        <td><div style="background-color:<?php ($row["qt"] <= 10) ? 'orange' : 'vert';?>"></div></td>
     </tr>
     <?php } ?>
        
@@ -59,3 +74,4 @@ $produit=$dao->getSearchbar();
 
 <!-- footer -->
 <?php require_once("footer.php");?>
+
