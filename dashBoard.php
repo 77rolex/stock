@@ -23,6 +23,7 @@ $produits=$dao->getSearchbar();
 <?php require_once("main.php");?>
 
 <style>
+    tr, td
     .reserve_color {
         display: inline-block;
     }
