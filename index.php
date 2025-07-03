@@ -1,6 +1,5 @@
 <?php
 
-
 require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection(); 
