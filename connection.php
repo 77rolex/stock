@@ -27,6 +27,7 @@ if ($_POST) {
 ?>
 
 <?php require_once("header.php"); ?>
+
 <main id="mainConnexion">
 
   <form action="connection.php" method="post" id="formConnexion">
@@ -45,4 +46,5 @@ if ($_POST) {
   </form>
 
 </main>
+
 <?php require_once("footer.php"); ?>
