@@ -1,5 +1,6 @@
 <?php require_once("header.php"); ?>
 <?php
+
 if ($_POST) {
   require_once("dao.php"); //se connecte au DB
   $dao=new DAOStock();
