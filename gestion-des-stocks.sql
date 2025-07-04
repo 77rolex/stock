@@ -445,14 +445,12 @@ INSERT INTO `reserves` (`id_reserve`, `reserve_name`, `color`) VALUES
 --
 -- Structure de la table `users`
 --
-
 CREATE TABLE `users` (
-  `id_user` smallint(5) NOT NULL,
-  `user_name` varchar(15) NOT NULL,
-  `pwd` varchar(100) NOT NULL,
-  `role` varchar(15) NOT NULL COMMENT 'formateur, stagiaire'
+  `id_user` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_name` VARCHAR(30) NOT NULL,
+  `pwd` VARCHAR(255) NOT NULL,
+  `role` VARCHAR(15) NOT NULL CHECK (role IN ('formateur', 'stagiaire'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Déchargement des données de la table `users`
 --

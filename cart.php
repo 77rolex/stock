@@ -22,6 +22,4 @@ if(empty($cart)){
 
 ?>
 
-
-
 <?php require_once("footer.php") ?>

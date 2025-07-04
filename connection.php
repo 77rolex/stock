@@ -1,3 +1,4 @@
+<?php require_once("header.php"); ?>
 <?php
 if ($_POST) {
   require_once("dao.php"); //se connecte au DB
@@ -11,9 +12,8 @@ if ($_POST) {
   
   if($user){
       //sauvegarde des donnees d'user dans la session
-      $_SESSION['username']=$user['username'];
-      $_SESSION['role']=$user['role'] ?? 'user';
-
+      $_SESSION['user_name']=$user['user_name'];
+      $_SESSION['role'] = $user['role'] ?? 'stagiaire';
       //redirection de vers "index.php"
       header("Location: index.php");
       exit;
@@ -25,7 +25,7 @@ if ($_POST) {
 }
 ?>
 
-<?php require_once("header.php"); ?>
+
 
 <main id="mainConnexion">
 

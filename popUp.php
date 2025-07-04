@@ -5,14 +5,17 @@ $dao=new DAOStock();
 $dao->connection(); 
 ?>
 
-<?php 
-    $products=$dao->getListOfProducts();
-?>
 <?php if($_SESSION['role']==='formateur'): ?>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Commander
     </button>
-<?php endif ?>
+<?php endif ?> 
+
+
+<?php 
+    $products=$dao->getListOfProducts();
+?>
+
 <!-- <?php if($_SESSION['role']==='formateur'): ?>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Commander</button>
 <?php endif ?> -->
