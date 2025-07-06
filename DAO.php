@@ -53,7 +53,7 @@
 		return $getColor->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function getProduits() {
+	/*public function getProduits() {
 		$produits = $this->dbh -> prepare("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
@@ -62,22 +62,29 @@
 		$produits->execute();
 
 		return $produits;
-	}
+	}*/
 
 	
 	// recupere la valeur saisie dans searchbar ou affiche vide
-	public function getSearchbar() {
-		$search = $_GET['search'] ?? "";
+	public function getSearchbar($search = null) {
+		// $search = $_GET['search'] ?? "";
 
 	// affiche seulement depuis searchbar
 		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
-								WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search
+								
 								");
-		$stmt = $this -> dbh -> prepare($search_query);
-		$stmt->execute(['search' => "%$search%"]); // %$search% qui contient le mot dans search
+				if($search_query){
+					$search_query .= "WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search";
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(['search' => "%$search%"]); // %$search% qui contient le mot dans search
+				}
+				else {
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(); // affiche tous les produits	
+				}
 		return $stmt->fetchAll();
 		
 	}
