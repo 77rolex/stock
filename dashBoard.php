@@ -17,9 +17,7 @@ $produits = $dao->getSearchbar();
 <!-- header -->
 <?php require_once("header.php");?>
 
-<!-- main -->
-<?php require_once("main.php");?>
-
+<!-- css for reserve color and seuil   -->
 <style>
     tr, td
     .reserve_color {
@@ -34,6 +32,10 @@ $produits = $dao->getSearchbar();
         background-color: #ff6347;
     }
 </style>
+
+<!-- main -->
+<?php require_once("main.php");?>
+
 <!-- search bar -->
 <form method="get">
     <input type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="">
