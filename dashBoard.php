@@ -9,11 +9,12 @@ $dao->connection();
 // Ce tbord contiendra tous les matériels (nom, unité, quantité), la localisation (la réserve) identifiable par couleur.
 // $produits = $dao->getProduits();
 // recupere la valeur du form
-$search = $_GET['search'] ?? "";
+//$search = $_GET['search'] ?? "";
  
 // recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
+$seuil = $dao->getSeuil();
 ?>
 
 
@@ -22,7 +23,7 @@ $produits = $dao->getSearchbar();
 
 <!-- css for reserve color and seuil   -->
 <style>
-   table, tr, th, td
+   
     .reserve_color {
         display: inline-block;
         width: 16px;
@@ -60,9 +61,10 @@ $produits = $dao->getSearchbar();
     </tr>
     </thead>
     <tbody>
-        <?php $seuil = $_GET["seuil"] ?? null; ?>
+        <!--?php $seuil = $_GET["seuil"] ?? null; ?-->
         <?php foreach($produits as $row){ ?>
-            <?php $alerte = ($seuil !== null && is_numeric($seuil) && $row["qt"] <= $seuil); ?> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
+            <!--?php $alerte = ($seuil !== null && is_numeric($seuil) && $row["qt"] <= $seuil); ?--> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
+        <?php $alerte = $dao->getSeuil($row["qt"] <= $seuil) ; ?>
         <tr class="<?php print $alerte ? "alerte" : "" ; ?>"> <!-- $alerte = true = class .alerte = color or non -->
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>
@@ -71,8 +73,8 @@ $produits = $dao->getSearchbar();
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?></td>
-        <td><?php if ($alerte) ?>
-            <div class = "alerte" style = "background-color:<?php print ($row["qt"] <= $seuil) ;?>"></div>
+        <td><?php print $alerte ? '<div class = "reserve_color" class = "alerte";"></div>' : "" ;?>
+            
         </td>
     </tr>
     <?php } ?>

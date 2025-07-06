@@ -66,8 +66,8 @@
 
 	
 	// recupere la valeur saisie dans searchbar ou affiche vide
-	public function getSearchbar($search = null) {
-		// $search = $_GET['search'] ?? "";
+	public function getSearchbar() {
+		 $search = $_GET['search'] ?? "";
 
 	// affiche seulement depuis searchbar
 		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
@@ -88,6 +88,17 @@
 		return $stmt->fetchAll();
 		
 	}
+
+	// vérifie et affiche la seuil
+	public function getSeuil() {
+		$seuil = $_GET["seuil"] ?? "" ;
+		// seuil defini && est un number si conditions is true = $seuil
+
+		return $seuil !== null && is_numeric($seuil);  	
+
+	}
+
+	
 	
 
 
