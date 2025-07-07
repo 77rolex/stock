@@ -76,7 +76,7 @@
 								JOIN reserves r ON r.id_reserve = p.reserve_id
 								
 								");
-				if($search_query){
+				if(!empty($search)){  // si $search n'est pas vide execute la condition WHERE ci_dessous
 					$search_query .= "WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search";
 					$stmt = $this -> dbh -> prepare($search_query);
 					$stmt->execute(['search' => "%$search%"]); // %$search% qui contient le mot dans search
