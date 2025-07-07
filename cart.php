@@ -6,6 +6,15 @@ $dao->connection();
 
 $cart=$_SESSION['cart'] ?? [];
 
+if ($_POST) {
+    $product_id = $_POST['listOfProducts'] ?? null;
+    $quantity = $_POST['quantity'] ?? 0;
+
+    if ($product_id && $quantity > 0) {
+        $_SESSION['cart'][$product_id] = ($_SESSION['cart'][$product_id] ?? 0) + $quantity;
+    }
+}
+
 if(empty($cart)){
     print "<p>Votre panier est vide.</p>";
 }else{
@@ -13,10 +22,13 @@ if(empty($cart)){
     foreach($cart as $product_id=>$qt){
         $product=$dao->getProductById($product_id);
         print "<li>".$product['nom_produit']." - $qt piece(s)</li>";
+        // print '<form action="cart.php" method="post" style="display:inline;">
+        //             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+        //         </form>';     !!!!!!!!
     }
     print "</ul>";
     print '<form action="" method="post">
-            <button type="submit">Envoyer la commande</button>
+            <button type="submit" class="btn btn-primary">Envoyer la commande</button>
         </form>';
 }
 

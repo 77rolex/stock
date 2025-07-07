@@ -5,20 +5,24 @@ $dao=new DAOStock();
 $dao->connection(); 
 ?>
 
-<?php if($_SESSION['role']==='formateur'): ?>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Commander
-    </button>
-<?php endif ?> 
+<nav id="navPopUp">
+  <?php if($_SESSION['role']==='formateur'): ?>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Commander
+      </button>
+  <?php endif ?> 
 
+  <form action="cart.php">
+      <button type="submit" class="btn btn-primary">
+        Panier
+      </button>
+  </form>
+</nav>
 
 <?php 
     $products=$dao->getListOfProducts();
 ?>
 
-<!-- <?php if($_SESSION['role']==='formateur'): ?>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Commander</button>
-<?php endif ?> -->
 <main id="mainPopUp">
     <form action="cart.php" method="post">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,12 +46,12 @@ $dao->connection();
 
                   </select>
                   <label for="inputCommand">Quantité:</label>
-                  <input type="number" id="inputCommand">
+                  <input type="number" name="qt" id="inputCommand" required>
               </div>
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-primary">✅ Confirmer et ajouter au panier</button>
+                <button type="submit" class="btn btn-primary">Confirmer et ajouter au panier</button>
               </div>
             </div>
           </div>
