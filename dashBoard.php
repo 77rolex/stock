@@ -48,25 +48,28 @@ if (!is_numeric($seuil)){
 
 <!-- search bar -->
 <form method="get">
-    <input type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="">
-    <button type="submit" class="btn btn-primary">Search</button>
-    
+    <div class="input-group mb-3" style="width:80%">
+    <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
+    <button type="submit" class="btn btn-info">Search</button>
+    </div>
     <?php if($_SESSION['role']==='formateur'): ?>
-        <input type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="">
-        <button type="submit" class="btn btn-primary">Fixer le seuil</button>
+        <div class="input-group mb-3" style="width:80%">
+        <input class="form-control" type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="<?php print ($_GET["seuil"])?? "" ;?>">
+        <button type="submit" class="btn btn-info">Fixer le seuil</button>
+        </div>
     <?php endif ?> 
 </form>
 
 <nav id="navPopUp">
   <?php if($_SESSION['role']==='formateur'): ?>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Commander
       </button>
   <?php endif ?> 
-
+<br><br>
   <form action="cart.php">
       <?php if($_SESSION['role']==='formateur'): ?>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-info" class="w3-display-right">
             Panier
           </button>
       <?php endif ?>   
@@ -74,7 +77,7 @@ if (!is_numeric($seuil)){
 </nav>
 
 <!-- display d_board -->
-<table>
+<table class="table table-dark table-hover">
 <thead>
     <tr>
         <th>Nom du produit</th>
@@ -96,9 +99,8 @@ if (!is_numeric($seuil)){
         <td><div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
         <?php print ($row["reserve_name"]);?>
         </td>
-        <td><?php print ($row["nom_category"]);?></td>
-        <td><?php print $alerte ? '<div class = "reserve_color" class = "alerte";"></div>' : "" ;?>
-            
+        <td><?php print ($row["nom_category"]);?>
+        <?php print $alerte ? '<div class = "reserve_color" class = "alerte";"></div>' : "" ;?> 
         </td>
     </tr>
     <?php } ?>
