@@ -2,27 +2,18 @@
     display: flex;
     justify-content: center;
 }
-
 #listOfProducts{
     width: 100%;
 }
-
 #inputCommand{
     width: 100%;
 }
-
 #divPopUp{
     margin-top: 200px;
     width: 800px;
 }
-
 #divCentrePopUp{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#navPopUp{
-    /* display: flex;
-    flex-direction: row; */
 }

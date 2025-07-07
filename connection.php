@@ -26,8 +26,6 @@ if ($_POST) {
 }
 ?>
 
-
-
 <main id="mainConnexion">
 
   <form action="connection.php" method="post" id="formConnexion">

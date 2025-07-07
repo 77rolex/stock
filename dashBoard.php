@@ -48,11 +48,11 @@ if (!is_numeric($seuil)){
 <!-- search bar -->
 <form method="get">
     <input type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="">
-    <button type="submit">Search</button>
+    <button type="submit" class="btn btn-primary">Search</button>
     
     <?php if($_SESSION['role']==='formateur'): ?>
         <input type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="">
-        <button type="submit">Fixer le seuil</button>
+        <button type="submit" class="btn btn-primary">Fixer le seuil</button>
     <?php endif ?> 
 </form>
 
