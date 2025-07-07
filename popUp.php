@@ -5,22 +5,6 @@ $dao=new DAOStock();
 $dao->connection(); 
 ?>
 
-<nav id="navPopUp">
-  <?php if($_SESSION['role']==='formateur'): ?>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Commander
-      </button>
-  <?php endif ?> 
-
-  <form action="cart.php">
-      <?php if($_SESSION['role']==='formateur'): ?>
-          <button type="submit" class="btn btn-primary">
-            Panier
-          </button>
-      <?php endif ?>   
-  </form>
-</nav>
-
 <?php 
     $products=$dao->getListOfProducts();
 ?>

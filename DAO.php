@@ -33,13 +33,6 @@
 		}
 	}
 
-	public function getReserves(){
-		$sql= "SELECT reserve_name as reserve, color FROM reserves ORDER BY id_reserve;";
-		$getColor = $this->dbh->prepare($sql);
-		$getColor->execute();
-		return $getColor->fetchAll(PDO::FETCH_ASSOC);
-	}
-	
 	// recupere la valeur saisie dans searchbar ou affiche vide
 	public function getSearchbar() {
 		 $search = $_GET['search'] ?? "";

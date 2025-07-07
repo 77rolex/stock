@@ -5,6 +5,7 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
+
 // Le formateur de son stock par un tableau de bord.
 // Ce tbord contiendra tous les matériels (nom, unité, quantité), la localisation (la réserve) identifiable par couleur.
 // $produits = $dao->getProduits();
@@ -55,6 +56,22 @@ if (!is_numeric($seuil)){
         <button type="submit" class="btn btn-primary">Fixer le seuil</button>
     <?php endif ?> 
 </form>
+
+<nav id="navPopUp">
+  <?php if($_SESSION['role']==='formateur'): ?>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Commander
+      </button>
+  <?php endif ?> 
+
+  <form action="cart.php">
+      <?php if($_SESSION['role']==='formateur'): ?>
+          <button type="submit" class="btn btn-primary">
+            Panier
+          </button>
+      <?php endif ?>   
+  </form>
+</nav>
 
 <!-- display d_board -->
 <table>
