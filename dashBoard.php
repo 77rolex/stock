@@ -38,7 +38,7 @@ if (!is_numeric($seuil)){
         margin-right: 6px;
     }
 
-    .alerte {
+    tr.alerte td{
         background-color: #ff6347;
     }
 </style>
@@ -54,8 +54,8 @@ if (!is_numeric($seuil)){
     </div>
     <?php if($_SESSION['role']==='formateur'): ?>
         <div class="input-group mb-3" style="width:80%">
-        <input class="form-control" type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="<?php print ($_GET["seuil"])?? "" ;?>">
-        <button type="submit" class="btn btn-info">Fixer le seuil</button>
+        <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+        <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
         </div>
     <?php endif ?> 
 </form>
