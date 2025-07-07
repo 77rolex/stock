@@ -70,7 +70,7 @@
 				if($seuil !== null && is_numeric($seuil)){
 					$search_query .= "WHERE p.qt <= :seuil";
 					$stmt = $this -> dbh -> prepare($search_query);
-					$stmt->execute(); // below qty execute
+					$stmt->execute(["seuil" => $seuil]); // below qty execute
 				}
 				else {
 					$stmt = $this -> dbh -> prepare($search_query);

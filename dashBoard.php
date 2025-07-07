@@ -15,7 +15,7 @@ $dao->connection();
 // recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
-// $alerte = $dao->getBelowSeuil();
+//$seuil = $dao->getBelowSeuil();
 $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
     $seuil = null;
