@@ -14,7 +14,12 @@ $dao->connection();
 // recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
-$seuil = $dao->getSeuil();
+// $alerte = $dao->getBelowSeuil();
+$seuil = $_GET["seuil"] ?? null;
+if (!is_numeric($seuil)){
+    $seuil = null;
+}
+
 ?>
 
 
@@ -63,8 +68,8 @@ $seuil = $dao->getSeuil();
     <tbody>
         <!--?php $seuil = $_GET["seuil"] ?? null; ?-->
         <?php foreach($produits as $row){ ?>
-            <!--?php $alerte = ($seuil !== null && is_numeric($seuil) && $row["qt"] <= $seuil); ?--> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
-        <?php $alerte = $dao->getSeuil($row["qt"] <= $seuil) ; ?>
+            <?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
+        <!--?php $alerte = $dao->getBelowSeuil($row["qt"] <= $seuil) ; ?-->
         <tr class="<?php print $alerte ? "alerte" : "" ; ?>"> <!-- $alerte = true = class .alerte = color or non -->
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>

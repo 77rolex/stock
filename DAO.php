@@ -88,16 +88,37 @@
 		return $stmt->fetchAll();
 		
 	}
-
-	// vérifie et affiche la seuil
+/*
+	// vérifie et affiche la seuil est saisie en number or vide
 	public function getSeuil() {
-		$seuil = $_GET["seuil"] ?? "" ;
+		$seuil = $_GET["seuil"] ?? null ;
 		// seuil defini && est un number si conditions is true = $seuil
 
 		return $seuil !== null && is_numeric($seuil);  	
 
 	}
+*/
+	// verifie et affiche l'alerte de seuil
 
+	public function getBelowSeuil() {
+		$seuil = $_GET["seuil"] ?? null ;
+		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
+								FROM produits p
+								JOIN category c ON c.id_category = p.category_id
+								JOIN reserves r ON r.id_reserve = p.reserve_id
+								");
+				// seuil defini && est un number si conditions is true = $seuil
+				if($seuil !== null && is_numeric($seuil)){
+					$search_query .= "WHERE p.qt <= :seuil";
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(); // below qty execute
+				}
+				else {
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(); // affiche tous les produits	
+				}
+		return $stmt->fetchAll();
+	}
 	
 	
 
