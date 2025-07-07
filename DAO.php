@@ -53,7 +53,7 @@
 		return $getColor->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function getProduits() {
+	/*public function getProduits() {
 		$produits = $this->dbh -> prepare("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
@@ -62,25 +62,64 @@
 		$produits->execute();
 
 		return $produits;
-	}
+	}*/
 
 	
 	// recupere la valeur saisie dans searchbar ou affiche vide
 	public function getSearchbar() {
-		$search = $_GET['search'] ?? "";
+		 $search = $_GET['search'] ?? "";
 
 	// affiche seulement depuis searchbar
 		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
-								WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search
+								
 								");
-		$stmt = $this -> dbh -> prepare($search_query);
-		$stmt->execute(['search' => "%$search%"]); // %$search% qui contient le mot dans search
+				if(!empty($search)){  // si $search n'est pas vide execute la condition WHERE ci_dessous
+					$search_query .= "WHERE p.nom_produit LIKE :search OR p.id_produit LIKE :search";
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(['search' => "%$search%"]); // %$search% qui contient le mot dans search
+				}
+				else {
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(); // affiche tous les produits	
+				}
 		return $stmt->fetchAll();
 		
 	}
+/*
+	// vérifie et affiche la seuil est saisie en number or vide
+	public function getSeuil() {
+		$seuil = $_GET["seuil"] ?? null ;
+		// seuil defini && est un number si conditions is true = $seuil
+
+		return $seuil !== null && is_numeric($seuil);  	
+
+	}
+*/
+	// verifie et affiche l'alerte de seuil
+
+	public function getBelowSeuil() {
+		$seuil = $_GET["seuil"] ?? null ;
+		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
+								FROM produits p
+								JOIN category c ON c.id_category = p.category_id
+								JOIN reserves r ON r.id_reserve = p.reserve_id
+								");
+				// seuil defini && est un number si conditions is true = $seuil
+				if($seuil !== null && is_numeric($seuil)){
+					$search_query .= "WHERE p.qt <= :seuil";
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(); // below qty execute
+				}
+				else {
+					$stmt = $this -> dbh -> prepare($search_query);
+					$stmt->execute(); // affiche tous les produits	
+				}
+		return $stmt->fetchAll();
+	}
+	
 	
 
 
