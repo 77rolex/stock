@@ -56,16 +56,7 @@
 		return $stmt->fetchAll();
 		
 	}
-/*
-	// vérifie et affiche la seuil est saisie en number or vide
-	public function getSeuil() {
-		$seuil = $_GET["seuil"] ?? null ;
-		// seuil defini && est un number si conditions is true = $seuil
 
-		return $seuil !== null && is_numeric($seuil);  	
-
-	}
-*/
 	// verifie et affiche l'alerte de seuil
 
 	public function getBelowSeuil() {
