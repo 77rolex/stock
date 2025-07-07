@@ -7,13 +7,11 @@ $dao->connection();
 $seuil = $dao->getBelowSeuil();
 ?>
 
-<!-- header -->
-<?php require_once("header.php");?>
 
 <!-- main -->
 <?php require_once("main.php");?>
 
-<table class="table table-dark table-hover">
+<table id="myTble" class="table table-dark table-hover display">
 <thead>
     <tr>
         <th>Nom du produit</th>
@@ -45,6 +43,13 @@ $seuil = $dao->getBelowSeuil();
     </tbody>
 
 </table>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "order": [[3, "asc"]] // Default sorting on the 4th column (Age) in ascending order
+        });
+    });
+</script>
 
 <!-- footer -->
 <?php require_once("footer.php");?>
