@@ -134,6 +134,11 @@
 		$productById->execute([$id]);
 		return $productById->fetch(PDO::FETCH_ASSOC);
 	}
+	// public function getProductById($id) {
+    // $productById = $this->dbh->prepare("SELECT * FROM produits WHERE id_produit = ?");
+    // $productById->execute([$id]);
+    // return $productById->fetch(PDO::FETCH_ASSOC);
+	// }
 
 	public function deconnection() {
 		$this->dbh=null;

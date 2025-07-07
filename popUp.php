@@ -13,9 +13,11 @@ $dao->connection();
   <?php endif ?> 
 
   <form action="cart.php">
-      <button type="submit" class="btn btn-primary">
-        Panier
-      </button>
+      <?php if($_SESSION['role']==='formateur'): ?>
+          <button type="submit" class="btn btn-primary">
+            Panier
+          </button>
+      <?php endif ?>   
   </form>
 </nav>
 

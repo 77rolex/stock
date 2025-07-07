@@ -49,8 +49,11 @@ if (!is_numeric($seuil)){
 <form method="get">
     <input type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="">
     <button type="submit">Search</button>
-    <input type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="">
-    <button type="submit">Fixer le seuil</button>
+    
+    <?php if($_SESSION['role']==='formateur'): ?>
+        <input type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="">
+        <button type="submit">Fixer le seuil</button>
+    <?php endif ?> 
 </form>
 
 <!-- display d_board -->
@@ -62,7 +65,6 @@ if (!is_numeric($seuil)){
         <th>Qty</th>
         <th>Reserve</th>
         <th>Category</th>
-        <th>Alerte</th>
     </tr>
     </thead>
     <tbody>
