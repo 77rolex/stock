@@ -22,9 +22,6 @@ if(empty($cart)){
     foreach($cart as $product_id=>$qt){
         $product=$dao->getProductById($product_id);
         print "<li>".$product['nom_produit']." - $qt piece(s)</li>";
-        // print '<form action="cart.php" method="post" style="display:inline;">
-        //             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-        //         </form>';     !!!!!!!!
     }
     print "</ul>";
     print '<form action="" method="post">
