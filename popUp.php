@@ -10,7 +10,38 @@ $dao->connection();
 ?>
 
 <main id="mainPopUp">
-    <form action="cart.php" method="post">
+    <form id="addToCartForm">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="divCentrePopUp">
+      <div class="modal-content" id="divPopUp">
+        <div class="modal-header">
+          <h5 class="modal-title">Commandes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <select name="listOfProducts" id="listOfProducts" class="form-select">
+            <?php foreach($products as $product){ ?>
+              <option value="<?php print $product['id_produit']; ?>">
+                <?php print $product['nom_produit']; ?>
+              </option>
+            <?php } ?>
+          </select>
+
+          <label for="inputCommand" class="form-label mt-3">Quantité:</label>
+          <input type="number" name="quantity" id="inputCommand" class="form-control" required>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+    <!-- <form action="cart.php" method="post">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     
           <div class="modal-dialog" id="divCentrePopUp">
@@ -32,7 +63,7 @@ $dao->connection();
 
                   </select>
                   <label for="inputCommand">Quantité:</label>
-                  <input type="number" name="qt" id="inputCommand" required>
+                  <input type="number" name="quantity" id="inputCommand" required>
               </div>
 
               <div class="modal-footer">
@@ -42,6 +73,6 @@ $dao->connection();
             </div>
           </div>
         </div>
-    </form>
+    </form> -->
 </main>
 <?php require_once("footer.php"); ?>  
