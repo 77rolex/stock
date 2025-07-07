@@ -13,6 +13,11 @@ if ($_POST) {
     if ($product_id && $quantity > 0) {
         $_SESSION['cart'][$product_id] = ($_SESSION['cart'][$product_id] ?? 0) + $quantity;
     }
+
+    $delete_id = $_POST['delete_id'] ?? null;
+    if ($delete_id) {
+        unset($_SESSION['cart'][$delete_id]);
+    }
 }
 
 if(empty($cart)){
@@ -21,7 +26,11 @@ if(empty($cart)){
     print "Produits dans le panier: <ul>";
     foreach($cart as $product_id=>$qt){
         $product=$dao->getProductById($product_id);
-        print "<li>".$product['nom_produit']." - $qt piece(s)</li>";
+        print "<li>".$product['nom_produit']." - $qt pièce(s)</li>";
+        print '<form action="cart.php" method="post" style="display:inline;">
+                    <input type="hidden" name="delete_id" value="'.$product_id.'">
+                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                </form>';
     }
     print "</ul>";
     print '<form action="" method="post">
