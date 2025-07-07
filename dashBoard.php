@@ -61,19 +61,19 @@ if (!is_numeric($seuil)){
 </form>
 
 <nav id="navPopUp">
-  <?php if($_SESSION['role']==='formateur'): ?>
-      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Commander
-      </button>
-  <?php endif ?> 
-<br><br>
-  <form action="cart.php">
-      <?php if($_SESSION['role']==='formateur'): ?>
-          <button type="submit" class="btn btn-info" class="w3-display-right">
-            Panier
-          </button>
-      <?php endif ?>   
-  </form>
+    <?php if($_SESSION['role']==='formateur'): ?>
+        <form action="cart.php">
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <button type="submit" class="btn btn-info" class="w3-display-right">
+                Panier
+            </button>
+        <?php endif ?>   
+        </form>
+    <br>
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Commander
+        </button>
+        <?php endif ?> <br><br>
 </nav>
 
 <!-- display d_board -->
@@ -85,6 +85,7 @@ if (!is_numeric($seuil)){
         <th>Qty</th>
         <th>Reserve</th>
         <th>Category</th>
+        
     </tr>
     </thead>
     <tbody>
@@ -100,8 +101,8 @@ if (!is_numeric($seuil)){
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color" class = "alerte";"></div>' : "" ;?> 
-        </td>
+        <?php print $alerte ? '<div class = "reserve_color alerte";"></div>' : "" ;?> </td>
+        
     </tr>
     <?php } ?>
 
