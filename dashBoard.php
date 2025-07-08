@@ -73,7 +73,7 @@ if (!is_numeric($seuil)){
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Commander
         </button>
-        <?php endif ?> <br><br>
+        <?php endif ?>
 </nav>
 
 <!-- display d_board -->
