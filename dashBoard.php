@@ -3,6 +3,13 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
+if (!isset($_SESSION['role'])) {
+    // Rediriger vers login ou autre action de sécurité
+    header("Location: connection.php");
+    exit;
+}
+
+
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
@@ -11,7 +18,7 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
-$dao->deconnection();
+
 ?>
 
 <!-- css for reserve color and seuil   -->
@@ -61,8 +68,8 @@ $dao->deconnection();
         <br><br>  
 </nav>
 
-<form action="connection.php" method="post">
-    <button type="submit" name="logout" class = "btn btn-info" >
+<form action="logout.php" method="post">
+    <button type="submit" class = "btn btn-info" >
         Se deconnecter
     </button>
     
@@ -99,7 +106,7 @@ $dao->deconnection();
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color alerte";"></div>' : "" ;?> </td>
+        <?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?> </td>
         
     </tr>
     <?php } ?>
