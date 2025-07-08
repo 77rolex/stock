@@ -14,7 +14,6 @@ document.getElementById("addToCartForm").addEventListener("submit", function(e) 
     const toast = new bootstrap.Toast(document.getElementById("toastSuccess"));
     toast.show();
 
-    // Закрыть модалку после добавления
     const modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
     modal.hide();
   })
