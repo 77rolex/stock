@@ -74,6 +74,8 @@ if (!is_numeric($seuil)){
             Commander
         </button>
         <?php endif ?>
+        <br><br>
+        
 </nav>
 
 <!-- display d_board -->

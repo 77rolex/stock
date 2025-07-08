@@ -16,7 +16,7 @@ $seuil = $dao->getBelowSeuil();
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Se deconnecter
             <!--redirection de vers "connection.php"-->
-            <?php require_once("header.php");?>
+            <?php $dao -> deconnection() ;?>
          <br><br>
 
 <table id="myTble" class="table table-dark table-hover display">
