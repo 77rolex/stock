@@ -1,16 +1,15 @@
 <?php
+<<<<<<< HEAD
 // Connexion a la base de donnees avec gestion des erreurs
 // username = formateur, pwd = formation
 
+=======
 
+require_once("DAO.php");
+$dao=new DAOStock();
+$dao->connection();
+>>>>>>> b12cb628660b8355d556aaad29d22950192534bb
 
-// Le formateur de son stock par un tableau de bord.
-// Ce tbord contiendra tous les matériels (nom, unité, quantité), la localisation (la réserve) identifiable par couleur.
-// $produits = $dao->getProduits();
-// recupere la valeur du form
-//$search = $_GET['search'] ?? "";
- 
-// recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
@@ -19,11 +18,8 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
+$dao->deconnection();
 ?>
-
-
-<!-- header -->
-<?php require_once("header.php");?>
 
 <!-- css for reserve color and seuil   -->
 <style>
@@ -40,9 +36,6 @@ if (!is_numeric($seuil)){
         background-color: #ff6347;
     }
 </style>
-
-<!-- main -->
-<?php require_once("main.php");?>
 
 <!-- search bar -->
 <form method="get">
@@ -72,10 +65,14 @@ if (!is_numeric($seuil)){
             Commander
         </button>
         <?php endif ?>
-        <br><br>
-        
+        <br><br>     
 </nav>
-
+    <?php if($_SESSION['role']==='formateur'):?>       
+        <h1 style= "text-align:center";>Dashboard Formateur</h1>
+        <?php endif ?>
+        <?php if($_SESSION['role']==='stagiare'):?>  
+        <h1 style= "text-align:center";>Dashboard Stagiaire</h1>
+        <?php endif ?>
 <!-- display d_board -->
 <table class="table table-dark table-hover">
 <thead>
@@ -110,5 +107,3 @@ if (!is_numeric($seuil)){
 
 </table>
 
-<!-- footer -->
-<?php require_once("footer.php");?>
