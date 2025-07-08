@@ -5,6 +5,7 @@ $dao=new DAOStock();
 $dao->connection();
 
 $seuil = $dao->getBelowSeuil();
+
 ?>
 
 <!-- header -->
