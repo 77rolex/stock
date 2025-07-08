@@ -3,13 +3,6 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
-if (!isset($_SESSION['role'])) {
-    // Rediriger vers login ou autre action de sécurité
-    header("Location: connection.php");
-    exit;
-}
-
-
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
