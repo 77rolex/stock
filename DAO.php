@@ -65,10 +65,10 @@
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
-								");
+								WHERE p.qt <= :seuil");
 				// seuil defini && est un number si conditions is true = $seuil
 				if($seuil !== null && is_numeric($seuil)){
-					$search_query .= "WHERE p.qt <= :seuil";
+					
 					$stmt = $this -> dbh -> prepare($search_query);
 					$stmt->execute(["seuil" => $seuil]); // below qty execute
 				}
