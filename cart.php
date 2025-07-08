@@ -52,7 +52,7 @@ if ($isAjax) {
 ?>
 
 <main class="container mt-3">
-<?php renderCartHTML($dao, $cart); ?>
+    <?php renderCartHTML($dao, $cart); ?>
 </main>
 
 <?php require_once("footer.php") ?>
