@@ -15,7 +15,7 @@ $dao->connection();
 // recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
-// $alerte = $dao->getBelowSeuil();
+//$seuil = $dao->getBelowSeuil();
 $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
     $seuil = null;
@@ -38,7 +38,7 @@ if (!is_numeric($seuil)){
         margin-right: 6px;
     }
 
-    .alerte {
+    tr.alerte td{
         background-color: #ff6347;
     }
 </style>
@@ -54,26 +54,28 @@ if (!is_numeric($seuil)){
     </div>
     <?php if($_SESSION['role']==='formateur'): ?>
         <div class="input-group mb-3" style="width:80%">
-        <input class="form-control" type="number" name="seuil" placeholder="fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value="<?php print ($_GET["seuil"])?? "" ;?>">
-        <button type="submit" class="btn btn-info">Fixer le seuil</button>
+        <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+        <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
         </div>
     <?php endif ?> 
 </form>
 
 <nav id="navPopUp">
-  <?php if($_SESSION['role']==='formateur'): ?>
-      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Commander
-      </button>
-  <?php endif ?> 
-<br><br>
-  <form action="cart.php">
-      <?php if($_SESSION['role']==='formateur'): ?>
-          <button type="submit" class="btn btn-info" class="w3-display-right">
-            Panier
-          </button>
-      <?php endif ?>   
-  </form>
+    <?php if($_SESSION['role']==='formateur'): ?>
+        <form action="cart.php">
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <button type="submit" class="btn btn-info" class="w3-display-right">
+                Panier
+            </button>
+        <?php endif ?>   
+        </form>
+    <br>
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Commander
+        </button>
+        <?php endif ?>
+        <br><br>
+        
 </nav>
 
 <!-- display d_board -->
@@ -85,6 +87,7 @@ if (!is_numeric($seuil)){
         <th>Qty</th>
         <th>Reserve</th>
         <th>Category</th>
+        
     </tr>
     </thead>
     <tbody>
@@ -100,8 +103,8 @@ if (!is_numeric($seuil)){
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color" class = "alerte";"></div>' : "" ;?> 
-        </td>
+        <?php print $alerte ? '<div class = "reserve_color alerte";"></div>' : "" ;?> </td>
+        
     </tr>
     <?php } ?>
 
