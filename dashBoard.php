@@ -11,7 +11,7 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
-$dao->deconnection();
+
 ?>
 
 <!-- css for reserve color and seuil   -->
