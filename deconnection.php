@@ -1,7 +1,7 @@
 <?php
-session_start();
+
 session_unset();
 session_destroy();
-header("Location: connection.php");  // Redirige vers la page de connexion
+//header("Location: connection.php");  // Redirige vers la page de connexion
 exit();
 ?>
