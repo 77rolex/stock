@@ -1,18 +1,8 @@
 <?php
-// Connexion a la base de donnees avec gestion des erreurs
-// username = formateur, pwd = formation
 require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
-
-// Le formateur de son stock par un tableau de bord.
-// Ce tbord contiendra tous les matériels (nom, unité, quantité), la localisation (la réserve) identifiable par couleur.
-// $produits = $dao->getProduits();
-// recupere la valeur du form
-//$search = $_GET['search'] ?? "";
- 
-// recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
@@ -21,11 +11,8 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
+
 ?>
-
-
-<!-- header -->
-<?php require_once("header.php");?>
 
 <!-- css for reserve color and seuil   -->
 <style>
@@ -42,9 +29,6 @@ if (!is_numeric($seuil)){
         background-color: #ff6347;
     }
 </style>
-
-<!-- main -->
-<?php require_once("main.php");?>
 
 <!-- search bar -->
 <form method="get">
@@ -73,9 +57,20 @@ if (!is_numeric($seuil)){
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Commander
         </button>
-        <?php endif ?> <br><br>
+        <?php endif ?>
+        <br><br>  
 </nav>
 
+<form action="deconnection.php" method="post">
+  <button type="submit" name="logout" class="btn btn-info">Se déconnecter</button>
+</form>
+<!-- <a href="deconnection.php">Se deconnecter</a> -->
+    <?php if($_SESSION['role']==='formateur'):?>       
+            <h1 style= "text-align:center";>Dashboard Formateur</h1>
+    <?php endif ?>
+    <?php if($_SESSION['role']==='stagiare'):?>  
+            <h1 style= "text-align:center";>Dashboard Stagiaire</h1>
+    <?php endif ?>
 <!-- display d_board -->
 <table class="table table-dark table-hover">
 <thead>
@@ -101,7 +96,7 @@ if (!is_numeric($seuil)){
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color alerte";"></div>' : "" ;?> </td>
+        <?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?> </td>
         
     </tr>
     <?php } ?>
@@ -109,6 +104,5 @@ if (!is_numeric($seuil)){
     </tbody>
 
 </table>
+<?php $dao->deconnection(); ?>
 
-<!-- footer -->
-<?php require_once("footer.php");?>

@@ -68,7 +68,13 @@
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
 								WHERE p.qt <= :seuil");
+<<<<<<< HEAD
 				
+=======
+				// seuil defini && est un number si conditions is true = $seuil
+				if($seuil !== null && is_numeric($seuil)){
+					
+>>>>>>> 68b8a5593972e5227bc4c3415e41791aaffed6d9
 					$stmt = $this -> dbh -> prepare($search_query);
 					$stmt->execute(["seuil" => $seuil]); // below qty execute
 				
@@ -81,7 +87,13 @@
 		$listOfProducts->execute();
 		return $listOfProducts->fetchAll(PDO::FETCH_ASSOC);
 	}
-
+	//popUp.php
+	public function getProductsBelowSeuil($seuil) {
+    $stmt = $this->dbh->prepare("SELECT * FROM produits WHERE qt <= :seuil");
+    $stmt->bindParam(":seuil", $seuil, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+	}
 	//cart.php
 	public function getProductById($id){
 		$productById=$this->dbh->prepare("SELECT * FROM produits WHERE id_produit = ?");
@@ -89,6 +101,31 @@
 		return $productById->fetch(PDO::FETCH_ASSOC);
 	}
 	
+	public function getFilteredProducts($search, $seuil) {
+		$query = "SELECT nom_produit, id_produit, qt FROM produits WHERE 1=1";
+		$params = [];
+
+		if (!empty($search)) {
+			$query .= " AND nom_produit LIKE :search";
+			$params['search'] = "%$search%";
+		}
+
+		if (is_numeric($seuil)) {
+			$query .= " AND qt <= :seuil";
+			$params['seuil'] = $seuil;
+		}
+
+		$stmt = $this->dbh->prepare($query);
+		$stmt->execute($params);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function logout() {
+		session_unset();     
+		session_destroy();      
+		exit();
+	}
+
 	public function deconnection() {
 		$this->dbh=null;
 	}

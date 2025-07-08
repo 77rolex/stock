@@ -4,11 +4,34 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
+<<<<<<< HEAD
 // recuperation seuil depuis URL
 $seuil = $_GET["seuil"] ?? null ;
 $produits = $dao->getBelowSeuil($seuil);
+=======
+$produits = $dao->getSearchbar();
+
+//$seuil = $dao->getBelowSeuil();
+$seuil = $_GET["seuil"] ?? null;
+if (!is_numeric($seuil)){
+    $seuil = null;
+}
+>>>>>>> 68b8a5593972e5227bc4c3415e41791aaffed6d9
 ?>
 
+<!-- search bar -->
+<form method="get">
+    <div class="input-group mb-3" style="width:80%">
+    <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
+    <button type="submit" class="btn btn-info">Search</button>
+    </div>
+    <!--?php if($_SESSION['role']==='formateur'): ?-->
+        <div class="input-group mb-3" style="width:80%">
+        <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+        <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
+        </div>
+    <!--?php endif ?--> 
+</form>
 
 <!-- main -->
 <?php require_once("main.php");?>
@@ -33,7 +56,7 @@ $produits = $dao->getBelowSeuil($seuil);
         <td><?php print ($row["unite"]);?></td>
         <td><?php print ($row["qt"]);?></td>
         <td><div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
-        <?php print ($row["reserve_name"]);?>
+            <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
         <div class = "reserve_color alerte"></div>
@@ -45,13 +68,13 @@ $produits = $dao->getBelowSeuil($seuil);
     </tbody>
 
 </table>
+<!--
 <script>
     $(document).ready(function () {
-        $('#myTable').DataTable({
+        $('#myTble').DataTable({
             "order": [[3, "asc"]] // Default sorting on the 4th column (Age) in ascending order
         });
     });
-</script>
+</script>-->
+<?php require_once("deconnection.php"); ?>
 
-<!-- footer -->
-<?php require_once("footer.php");?>
