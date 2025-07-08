@@ -98,7 +98,26 @@
 		$productById->execute([$id]);
 		return $productById->fetch(PDO::FETCH_ASSOC);
 	}
-		
+	
+	public function getFilteredProducts($search, $seuil) {
+		$query = "SELECT nom_produit, id_produit, qt FROM produits WHERE 1=1";
+		$params = [];
+
+		if (!empty($search)) {
+			$query .= " AND nom_produit LIKE :search";
+			$params['search'] = "%$search%";
+		}
+
+		if (is_numeric($seuil)) {
+			$query .= " AND qt <= :seuil";
+			$params['seuil'] = $seuil;
+		}
+
+		$stmt = $this->dbh->prepare($query);
+		$stmt->execute($params);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function deconnection() {
 		$this->dbh=null;
 	}

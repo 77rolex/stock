@@ -1,9 +1,7 @@
 <?php
 // Connexion a la base de donnees avec gestion des erreurs
 // username = formateur, pwd = formation
-require_once("DAO.php");
-$dao=new DAOStock();
-$dao->connection();
+
 
 
 // Le formateur de son stock par un tableau de bord.
