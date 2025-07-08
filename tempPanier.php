@@ -4,15 +4,9 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
-
 $produits = $dao->getSearchbar();
 
 $produits = $dao->getBelowSeuil();
-$seuil = $_GET["seuil"] ?? null;
-if (!is_numeric($seuil)){
-    $seuil = null;
-
-}
 ?>
 
 <!-- search bar -->
@@ -44,9 +38,8 @@ if (!is_numeric($seuil)){
     <tbody>
         
         <?php foreach($produits as $row){ ?>
-            <?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?>
-            <tr class="<?php print $alerte ? "alerte" : "" ; ?>">
-        <!--tr class="alerte"--> 
+            
+        <tr class="alerte"> 
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>
         <td><?php print ($row["qt"]);?></td>
