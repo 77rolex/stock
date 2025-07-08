@@ -1,18 +1,9 @@
 <?php
-// Connexion a la base de donnees avec gestion des erreurs
-// username = formateur, pwd = formation
+
 require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
-
-// Le formateur de son stock par un tableau de bord.
-// Ce tbord contiendra tous les matériels (nom, unité, quantité), la localisation (la réserve) identifiable par couleur.
-// $produits = $dao->getProduits();
-// recupere la valeur du form
-//$search = $_GET['search'] ?? "";
- 
-// recupere la valeur saisie dans searchbar ou affiche vide
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
@@ -70,7 +61,12 @@ $dao->deconnection();
         <?php endif ?>
         <br><br>     
 </nav>
-<h1 style= "text-align:center";>Dashboard Formateur</h1>
+    <?php if($_SESSION['role']==='formateur'):?>       
+        <h1 style= "text-align:center";>Dashboard Formateur</h1>
+        <?php endif ?>
+        <?php if($_SESSION['role']==='stagiare'):?>  
+        <h1 style= "text-align:center";>Dashboard Stagiaire</h1>
+        <?php endif ?>
 <!-- display d_board -->
 <table class="table table-dark table-hover">
 <thead>

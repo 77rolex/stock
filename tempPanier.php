@@ -3,16 +3,10 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
-$seuil = $dao->getBelowSeuil();
-
+$produits = $dao->getBelowSeuil();
+$dao->deconnection();
 ?>
-
-
-<!-- main -->
-<?php require_once("main.php");?>
-
-
-
+<h1 style= "text-align:center";>Dashboard Panier temporaire</h1>
 <table id="myTble" class="table table-dark table-hover display">
 <thead>
     <tr>
@@ -27,9 +21,9 @@ $seuil = $dao->getBelowSeuil();
     <tbody>
         <!--?php $seuil = $_GET["seuil"] ?? null; ?-->
         <?php foreach($produits as $row){ ?>
-            <?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
+            <!--?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?--> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
         <!--?php $alerte = $dao->getBelowSeuil($row["qt"] <= $seuil) ; ?-->
-        <tr class="<?php print $alerte ? "alerte" : "" ; ?>"> <!-- $alerte = true = class .alerte = color or non -->
+        <tr class="alerte"> <!-- $alerte = true = class .alerte = color or non -->
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>
         <td><?php print ($row["qt"]);?></td>
@@ -37,7 +31,7 @@ $seuil = $dao->getBelowSeuil();
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color alerte";"></div>' : "" ;?> </td>
+         </td>
         
     </tr>
     <?php } ?>
@@ -53,5 +47,3 @@ $seuil = $dao->getBelowSeuil();
     });
 </script>
 
-<!-- footer -->
-<?php require_once("footer.php");?>
