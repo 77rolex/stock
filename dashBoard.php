@@ -1,7 +1,7 @@
 <?php
-// Connexion a la base de donnees avec gestion des erreurs
-// username = formateur, pwd = formation
-
+require_once("DAO.php");
+$dao=new DAOStock();
+$dao->connection();
 
 $produits = $dao->getSearchbar();
 
@@ -11,7 +11,7 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
-
+$dao->deconnection();
 ?>
 
 <!-- css for reserve color and seuil   -->
