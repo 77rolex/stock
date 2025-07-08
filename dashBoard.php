@@ -58,14 +58,22 @@ $dao->deconnection();
             Commander
         </button>
         <?php endif ?>
-        <br><br>     
+        <br><br>  
 </nav>
+
+<form action="connection.php" method="post">
+    <button type="submit" name="logout" class = "btn btn-info" >
+        Se deconnecter
+    </button>
+    
+</form>
+
     <?php if($_SESSION['role']==='formateur'):?>       
-        <h1 style= "text-align:center";>Dashboard Formateur</h1>
-        <?php endif ?>
-        <?php if($_SESSION['role']==='stagiare'):?>  
-        <h1 style= "text-align:center";>Dashboard Stagiaire</h1>
-        <?php endif ?>
+            <h1 style= "text-align:center";>Dashboard Formateur</h1>
+    <?php endif ?>
+    <?php if($_SESSION['role']==='stagiare'):?>  
+            <h1 style= "text-align:center";>Dashboard Stagiaire</h1>
+    <?php endif ?>
 <!-- display d_board -->
 <table class="table table-dark table-hover">
 <thead>
@@ -99,4 +107,5 @@ $dao->deconnection();
     </tbody>
 
 </table>
+<?php $dao->deconnection(); ?>
 

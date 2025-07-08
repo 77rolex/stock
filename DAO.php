@@ -118,6 +118,12 @@
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	// public function logout() {
+	// 	// session_unset();     
+	// 	session_destroy();      
+	// 	exit();
+	// }
+
 	public function deconnection() {
 		$this->dbh=null;
 	}
