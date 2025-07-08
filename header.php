@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<?php session_start(); 
+<?php 
 require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();

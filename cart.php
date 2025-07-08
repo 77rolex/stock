@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once("header.php");
 
 $cart = $_SESSION['cart'] ?? [];
@@ -54,5 +55,11 @@ if ($isAjax) {
 <main class="container mt-3">
     <?php renderCartHTML($dao, $cart); ?>
 </main>
+
+<form action="index.php" method="post">
+    <button class = "btn btn-info">
+        Retour vers le stock
+    </button>
+</form>
 
 <?php require_once("footer.php") ?>

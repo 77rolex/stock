@@ -61,13 +61,10 @@ $dao->deconnection();
         <br><br>  
 </nav>
 
-<form action="connection.php" method="post">
-    <button type="submit" name="logout" class = "btn btn-info" >
-        Se deconnecter
-    </button>
-    
+<form action="deconnection.php" method="post">
+  <button type="submit" name="logout" class="btn btn-info">Se déconnecter</button>
 </form>
-
+<!-- <a href="deconnection.php">Se deconnecter</a> -->
     <?php if($_SESSION['role']==='formateur'):?>       
             <h1 style= "text-align:center";>Dashboard Formateur</h1>
     <?php endif ?>
