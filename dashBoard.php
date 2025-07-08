@@ -11,7 +11,7 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
-$dao->deconnection();
+
 ?>
 
 <!-- css for reserve color and seuil   -->
@@ -96,7 +96,7 @@ $dao->deconnection();
         <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color alerte";"></div>' : "" ;?> </td>
+        <?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?> </td>
         
     </tr>
     <?php } ?>
