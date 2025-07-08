@@ -3,12 +3,15 @@ require_once("header.php");
 require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
-$produits = $dao->getSearchbar();
-$produits = $dao->getBelowSeuil();
 
+
+$produits = $dao->getSearchbar();
+
+$produits = $dao->getBelowSeuil();
 $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
     $seuil = null;
+
 }
 ?>
 
@@ -41,7 +44,9 @@ if (!is_numeric($seuil)){
     <tbody>
         
         <?php foreach($produits as $row){ ?>
-        <tr class="alerte"> 
+            <?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?>
+            <tr class="<?php print $alerte ? "alerte" : "" ; ?>">
+        <!--tr class="alerte"--> 
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>
         <td><?php print ($row["qt"]);?></td>
@@ -56,12 +61,13 @@ if (!is_numeric($seuil)){
     </tbody>
 
 </table>
+<!--
 <script>
     $(document).ready(function () {
         $('#myTble').DataTable({
             "order": [[3, "asc"]] // Default sorting on the 4th column (Age) in ascending order
         });
     });
-</script>
+</script>-->
 <?php require_once("deconnection.php"); ?>
 
