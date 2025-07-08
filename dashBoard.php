@@ -1,14 +1,7 @@
 <?php
-<<<<<<< HEAD
 // Connexion a la base de donnees avec gestion des erreurs
 // username = formateur, pwd = formation
 
-=======
-
-require_once("DAO.php");
-$dao=new DAOStock();
-$dao->connection();
->>>>>>> b12cb628660b8355d556aaad29d22950192534bb
 
 $produits = $dao->getSearchbar();
 
