@@ -21,11 +21,8 @@ if (!is_numeric($seuil)){
     $seuil = null;
 }
 
+$dao->deconnection();
 ?>
-
-
-<!-- header -->
-<?php require_once("header.php");?>
 
 <!-- css for reserve color and seuil   -->
 <style>
@@ -42,9 +39,6 @@ if (!is_numeric($seuil)){
         background-color: #ff6347;
     }
 </style>
-
-<!-- main -->
-<?php require_once("main.php");?>
 
 <!-- search bar -->
 <form method="get">
@@ -74,10 +68,9 @@ if (!is_numeric($seuil)){
             Commander
         </button>
         <?php endif ?>
-        <br><br>
-        
+        <br><br>     
 </nav>
-
+<h1 style= "text-align:center";>Dashboard Formateur</h1>
 <!-- display d_board -->
 <table class="table table-dark table-hover">
 <thead>
@@ -112,5 +105,3 @@ if (!is_numeric($seuil)){
 
 </table>
 
-<!-- footer -->
-<?php require_once("footer.php");?>
