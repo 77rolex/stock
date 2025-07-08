@@ -1,5 +1,4 @@
 <?php 
-require_once("header.php");
 require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
@@ -12,12 +11,7 @@ $seuil = $dao->getBelowSeuil();
 <!-- main -->
 <?php require_once("main.php");?>
 
-<br>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Se deconnecter
-            <!--redirection de vers "connection.php"-->
-            <?php $dao -> deconnection() ;?>
-         <br><br>
+
 
 <table id="myTble" class="table table-dark table-hover display">
 <thead>
