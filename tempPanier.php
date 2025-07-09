@@ -4,11 +4,9 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
-<<<<<<< HEAD
 // recuperation seuil depuis URL
 $seuil = $_GET["seuil"] ?? null ;
 $produits = $dao->getBelowSeuil($seuil);
-=======
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
@@ -16,7 +14,6 @@ $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
     $seuil = null;
 }
->>>>>>> 68b8a5593972e5227bc4c3415e41791aaffed6d9
 ?>
 
 <!-- search bar -->
