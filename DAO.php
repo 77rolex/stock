@@ -83,7 +83,8 @@
 
 	public function getAllProducts() {
 		
-		$stmt = $this -> dbh -> prepare = ("SELECT id_produit, nom_produit, FROM produits p");
+		$search_query = "SELECT id_produit, nom_produit, FROM produits";
+		$stmt = $this -> dbh -> prepare ($search_query);
 								$stmt->execute(); // affiche tous les produits	
 								return $stmt->fetchAll();
 	}
