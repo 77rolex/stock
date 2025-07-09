@@ -5,6 +5,7 @@ $dao->connection();
 
 $produits = $dao->getSearchbar();
 
+
 //$seuil = $dao->getBelowSeuil();
 $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
@@ -80,7 +81,9 @@ if (!is_numeric($seuil)){
         <th>Qty</th>
         <th>Reserve</th>
         <th>Category</th>
-        
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <th>QR</th>
+        <?php endif ?> 
     </tr>
     </thead>
     <tbody>
@@ -92,12 +95,18 @@ if (!is_numeric($seuil)){
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>
         <td><?php print ($row["qt"]);?></td>
-        <td><div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
-        <?php print ($row["reserve_name"]);?>
+        <td>
+            <div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
+            <?php print ($row["reserve_name"]);?>
         </td>
-        <td><?php print ($row["nom_category"]);?>
-        <?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?> </td>
-        
+        <td><?php print ($row["nom_category"]);?></td>
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <td>
+                <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-sm btn-primary" target="_blank">
+                    Voir QR Code  
+                </a><?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?>
+            </td>
+        <?php endif ?> 
     </tr>
     <?php } ?>
 

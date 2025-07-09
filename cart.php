@@ -39,7 +39,7 @@ function renderCartHTML($dao, $cart) {
                 </form>';
         }
         echo "</ul>";
-        echo '<form action="" method="post">
+        echo '<form action="envoyer.php" method="post">
                 <button type="submit" class="btn btn-primary">Envoyer la commande</button>
               </form>';
     }

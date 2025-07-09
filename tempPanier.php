@@ -4,6 +4,11 @@ require_once("DAO.php");
 $dao=new DAOStock();
 $dao->connection();
 
+<<<<<<< HEAD
+// recuperation seuil depuis URL
+$seuil = $_GET["seuil"] ?? null ;
+$produits = $dao->getBelowSeuil($seuil);
+=======
 $produits = $dao->getSearchbar();
 
 //$seuil = $dao->getBelowSeuil();
@@ -11,6 +16,7 @@ $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
     $seuil = null;
 }
+>>>>>>> 68b8a5593972e5227bc4c3415e41791aaffed6d9
 ?>
 
 <!-- search bar -->
@@ -27,7 +33,9 @@ if (!is_numeric($seuil)){
     <!--?php endif ?--> 
 </form>
 
-<h1 style= "text-align:center";>Dashboard Panier temporaire</h1>
+<!-- main -->
+<?php require_once("main.php");?>
+
 <table id="myTable" class="table table-dark table-hover display">
 <thead>
     <tr>
@@ -42,16 +50,17 @@ if (!is_numeric($seuil)){
     <tbody>
         
         <?php foreach($produits as $row){ ?>
-         <?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?>
-          
-        <tr class="alerte"> 
+           
+        <tr class="alerte">
         <td><?php print ($row["nom_produit"]);?></td>
         <td><?php print ($row["unite"]);?></td>
         <td><?php print ($row["qt"]);?></td>
         <td><div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
             <?php print ($row["reserve_name"]);?>
         </td>
-        <td><?php print ($row["nom_category"]);?></td>
+        <td><?php print ($row["nom_category"]);?>
+        <div class = "reserve_color alerte"></div>
+        </td>
         
     </tr>
     <?php } ?>

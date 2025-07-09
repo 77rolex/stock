@@ -38,7 +38,7 @@
 		 $search = $_GET['search'] ?? "";
 
 	// affiche seulement depuis searchbar
-		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
+		$search_query = ("SELECT id_produit, nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
@@ -59,25 +59,21 @@
 
 	// verifie et affiche l'alerte de seuil
 
-	public function getBelowSeuil() {
-		$seuil = $_GET["seuil"] ?? null ;
+	public function getBelowSeuil($seuil = null) {
+		if($seuil === null || is_numeric($seuil)){
+			return [];
+		}
 		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
 								WHERE p.qt <= :seuil");
-				// seuil defini && est un number si conditions is true = $seuil
-				if($seuil !== null && is_numeric($seuil)){
-					
+				
 					$stmt = $this -> dbh -> prepare($search_query);
 					$stmt->execute(["seuil" => $seuil]); // below qty execute
-				}
-				else {
-					$stmt = $this -> dbh -> prepare($search_query);
-					$stmt->execute(); // affiche tous les produits	
-				}
+				
 		return $stmt->fetchAll();
-	}
+		}
 
 	// QR code verifie et affiche
 
@@ -130,10 +126,10 @@
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function logout() {
-		session_unset();     
-		session_destroy();      
-		exit();
+	// qt.php
+	public function updateProductQuantity($id, $qt) {
+		$stmt = $this->dbh->prepare("UPDATE produits SET qt = :qt WHERE id_produit = :id");
+		$stmt->execute(['qt' => $qt, 'id' => $id]);
 	}
 
 	public function deconnection() {
