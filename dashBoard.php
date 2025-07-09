@@ -81,8 +81,9 @@ if (!is_numeric($seuil)){
         <th>Qty</th>
         <th>Reserve</th>
         <th>Category</th>
-        <th>QR</th>
-        
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <th>QR</th>
+        <?php endif ?> 
     </tr>
     </thead>
     <tbody>
@@ -99,13 +100,13 @@ if (!is_numeric($seuil)){
             <?php print ($row["reserve_name"]);?>
         </td>
         <td><?php print ($row["nom_category"]);?></td>
-        <td>
-            <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-sm btn-primary" target="_blank">
-                Voir QR Code
-            </a>
-        </td>
-        <td><?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?> </td>
-        
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <td>
+                <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-sm btn-primary" target="_blank">
+                    Voir QR Code  
+                </a><?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?>
+            </td>
+        <?php endif ?> 
     </tr>
     <?php } ?>
 

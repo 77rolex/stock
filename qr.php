@@ -34,10 +34,8 @@ header("Content-Type: text/html; charset=UTF-8");
   <title>QR Code - <?php echo htmlspecialchars($product['nom_produit']); ?></title>
 </head>
 <body style="text-align:center; font-family:sans-serif; margin-top:30px;">
-  <h2>QR Code: <?php echo htmlspecialchars($product['nom_produit']); ?></h2>
+  <h2><?php echo htmlspecialchars($product['nom_produit']); ?></h2>
   <p>Scannez pour modifier la quantité</p>
   <img src="<?php echo (new QRCode($options))->render($url); ?>" alt="QR Code" />
-  <br><br>
-  <a href="dashboard.php">⬅ Retour</a>
 </body>
 </html>

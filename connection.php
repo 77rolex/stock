@@ -29,8 +29,9 @@ if ($_POST) {
 ?>
 
 <main id="mainConnexion">
-
+  
   <form action="connection.php" method="post" id="formConnexion">
+    <img src="logo afpa.jpg" alt="img" id="logo">
     <div class="form-group">
       <label for="exampleInputEmail1">Nom d'utilisateur :</label>
       <input type="text" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" aria-describedby="emailHelp" required>
