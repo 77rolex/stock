@@ -59,25 +59,27 @@
 
 	// verifie et affiche l'alerte de seuil
 
-	public function getBelowSeuil() {
-		$seuil = $_GET["seuil"] ?? null ;
+	public function getBelowSeuil($seuil = null) {
+		if($seuil === null || is_numeric($seuil)){
+			return [];
+		}
 		$search_query = ("SELECT nom_produit, unite, qt, r.color, reserve_name, nom_category
 								FROM produits p
 								JOIN category c ON c.id_category = p.category_id
 								JOIN reserves r ON r.id_reserve = p.reserve_id
 								WHERE p.qt <= :seuil");
+<<<<<<< HEAD
+				
+=======
 				// seuil defini && est un number si conditions is true = $seuil
 				if($seuil !== null && is_numeric($seuil)){
 					
+>>>>>>> 68b8a5593972e5227bc4c3415e41791aaffed6d9
 					$stmt = $this -> dbh -> prepare($search_query);
 					$stmt->execute(["seuil" => $seuil]); // below qty execute
-				}
-				else {
-					$stmt = $this -> dbh -> prepare($search_query);
-					$stmt->execute(); // affiche tous les produits	
-				}
+				
 		return $stmt->fetchAll();
-	}
+		}
 
 	//popUp.php
 	public function getListOfProducts(){
