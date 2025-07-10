@@ -94,7 +94,10 @@ if (!is_numeric($seuil)){
 <script>
     $(document).ready(function () {
         $('#myTable').DataTable({
-            "order": [[3, "asc"]] // Default sorting on the 4th column (Age) in ascending order
+            "order": [[3, "asc"]], // Tri par défaut sur la 4e colonne (Age)
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
+            }
         });
     });
 </script>
