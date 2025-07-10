@@ -33,13 +33,13 @@ if (!is_numeric($seuil)){
 
 <!-- search bar -->
 <form method="get">
-    <div class="input-group mb-3" style="width:80%">
+    <div class="input-group mb-3" style="width:80%" id="divInput">
     <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
-    <button type="submit" class="btn btn-info">Search</button>
+    <button type="submit" class="btn btn-info">Chercher</button>
     </div>
     <?php if($_SESSION['role']==='formateur'): ?>
         <div class="input-group mb-3" style="width:80%">
-        <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+        <input class="form-control" type = "number" name = "seuil" placeholder = "Fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
         <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
         </div>
     <?php endif ?> 
