@@ -23,7 +23,7 @@ tr.alerte td{
 }
 #sectionNav{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     height: 16%;
 }
 
@@ -49,3 +49,21 @@ tr.alerte td{
     display: flex;
     justify-content: space-between;
 }
+
+#btnPanier{
+    height: 144%;
+    margin-left: 10%
+}
+#btnCommander{
+    height: 100%;
+}
+#btnDeconnection{
+    height: 144%;
+}
+
+#nameSession{
+    display: flex;
+    justify-self: center;
+    height: 15%;
+}
+

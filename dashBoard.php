@@ -31,18 +31,18 @@ if (!is_numeric($seuil)){
     <section id="sectionNavForm">
         <nav id="navPopUp">
             <?php if($_SESSION['role']==='formateur'): ?>
-                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCommander">
                         Commander
                 </button>
                 <form action="cart.php">
-                    <button type="submit" class="btn btn-info" class="w3-display-right">
+                    <button type="submit" class="btn btn-info" class="w3-display-right" id="btnPanier">
                         Panier
                     </button>
                 </form>
             <?php endif ?>
         </nav>
         <form action="deconnection.php" method="post">
-            <button type="submit" name="logout" class="btn btn-info">
+            <button type="submit" name="logout" class="btn btn-info" id="btnDeconnection">
                 Se déconnecter
             </button>
         </form>
@@ -50,25 +50,27 @@ if (!is_numeric($seuil)){
 
 </section>
 <!-- <a href="deconnection.php">Se deconnecter</a> -->
+<section id="nameSession">
     <?php if($_SESSION['role']==='formateur'):?>       
-            <h1 class="text-center mb-4" style= "text-align:center";>Dashboard Formateur</h1>
+            <h1>Formateur</h1>
     <?php endif ?>
-    <?php if($_SESSION['role']==='stagiare'):?>  
-            <h1 class="text-center mb-4" style= "text-align:center";>Dashboard Stagiaire</h1>
+    <?php if($_SESSION['role']==='stagiaire'):?>  
+            <h1>Stagiaire</h1>
     <?php endif ?>
+</section>
 <!-- display d_board -->
 <table id = "myTable" class="table table-dark table-hover">
-<thead>
-    <tr>
-        <th>Nom du produit</th>
-        <th>Unité</th>
-        <th>Qty</th>
-        <th>Reserve</th>
-        <th>Category</th>
-        <?php if($_SESSION['role']==='formateur'): ?>
-            <th>QR</th>
-        <?php endif ?> 
-    </tr>
+    <thead>
+        <tr>
+            <th>Nom du produit</th>
+            <th>Unité</th>
+            <th>Qty</th>
+            <th>Reserve</th>
+            <th>Category</th>
+            <?php if($_SESSION['role']==='formateur'): ?>
+                <th>QR</th>
+            <?php endif ?> 
+        </tr>
     </thead>
     <tbody>
         <!--?php $seuil = $_GET["seuil"] ?? null; ?-->
@@ -76,23 +78,23 @@ if (!is_numeric($seuil)){
             <?php $alerte = ($seuil !== null && $row["qt"] <= $seuil); ?> <!-- seuil defini && est un number && qt trop bas si conditions is true = $alerte -->
         <!--?php $alerte = $dao->getBelowSeuil($row["qt"] <= $seuil) ; ?-->
         <tr class="<?php print $alerte ? "alerte" : "" ; ?>"> <!-- $alerte = true = class .alerte = color or non -->
-        <td><?php print ($row["nom_produit"]);?></td>
-        <td><?php print ($row["unite"]);?></td>
-        <td><?php print ($row["qt"]);?></td>
-        <td>
-            <div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
-            <?php print ($row["reserve_name"]);?>
-        </td>
-        <td><?php print ($row["nom_category"]);?></td>
-        <?php if($_SESSION['role']==='formateur'): ?>
+            <td><?php print ($row["nom_produit"]);?></td>
+            <td><?php print ($row["unite"]);?></td>
+            <td><?php print ($row["qt"]);?></td>
             <td>
-                <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-sm btn-primary" target="_blank">
-                    Voir QR Code  
-                </a><?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?>
+                <div class = "reserve_color" style="background-color:<?php print ($row["color"]);?>;"></div>
+                <?php print ($row["reserve_name"]);?>
             </td>
-        <?php endif ?> 
-    </tr>
-    <?php } ?>
+            <td><?php print ($row["nom_category"]);?></td>
+            <?php if($_SESSION['role']==='formateur'): ?>
+                <td>
+                    <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-sm btn-primary" target="_blank">
+                        Voir QR Code  
+                    </a><?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?>
+                </td>
+            <?php endif ?> 
+        </tr>
+        <?php } ?>
 
     </tbody>
 

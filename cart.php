@@ -29,18 +29,18 @@ function renderCartHTML($dao, $cart) {
     if (empty($cart)) {
         echo "<p>Votre panier est vide.</p>";
     } else {
-        echo "Produits dans le panier: <ul>";
+        echo "<b>Produits dans le panier: </b><ul>";
         foreach ($cart as $product_id => $qt) {
             $product = $dao->getProductById($product_id);
             echo "<li>" . htmlspecialchars($product['nom_produit']) . " - $qt pièce(s)</li>";
             echo '<form action="cart.php" method="post" style="display:inline;">
                     <input type="hidden" name="delete_id" value="'.$product_id.'">
-                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    <button type="submit" class="btn btn-danger btn-sm" id="btnSuprimer">Supprimer</button>
                 </form>';
         }
         echo "</ul>";
-        echo '<form action="envoyer.php" method="post">
-                <button type="submit" class="btn btn-primary">Envoyer la commande</button>
+        echo '<form action="envoyer.php" method="post" id="formEnvoyer">
+                <button type="submit" class = "btn btn-info">Envoyer la commande</button>
               </form>';
     }
 }
@@ -52,13 +52,13 @@ if ($isAjax) {
 
 ?>
 
-<main class="container mt-3">
+<main class="container mt-3" id="mainCart">
     <?php renderCartHTML($dao, $cart); ?>
 </main>
 
 <form action="index.php" method="post">
     <button class = "btn btn-info">
-        Retour vers le stock
+        <-Retour vers le stock
     </button>
 </form>
 
