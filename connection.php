@@ -44,7 +44,7 @@ if ($_POST) {
         <small class="form-text text-muted">Mettez votre mot de passe</small>
       </div>
       <br>
-      <button type="submit" class = "btn btn-info">Se connecter</button>
+      <button type="submit" class = "btn btn-info" id="btnSeConnecter">Se connecter</button>
       <br>
     </form>
   </section>  

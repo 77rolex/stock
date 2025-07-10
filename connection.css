@@ -4,10 +4,9 @@
     flex-direction: column;
     justify-self: center;
     justify-content: center;
-    width: 30%;
     height: 60%;
     margin-top: 105px;
-    width: 40%;
+    width: 30%;
 }
 
 #formConnexion{
@@ -24,6 +23,11 @@
 #sectionConnection{
     margin-top: 100px;
     border-radius: 15px;
-    border: 1px solid black;
+    box-shadow: 2px 4px 10px rgba(117, 117, 117, 0.3);
+    border: 1px solid rgb(179, 179, 179);
     width: 100%;
+}
+#btnSeConnecter{
+    box-shadow: 2px 4px 10px rgba(117, 117, 117, 0.3);
+    border: 1px solid rgb(179, 179, 179);
 }

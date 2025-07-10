@@ -21,19 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_quantity'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Modifier Quantité</title>
-</head>
+<?php require_once("header.php"); ?>
 <body style="font-family:sans-serif; max-width:600px; margin:40px auto;">
-  <h2>Modifier la quantité: <?php echo htmlspecialchars($product['nom_produit']); ?></h2>
-  <p>Quantité actuelle: <strong><?php echo $product['qt']; ?></strong></p>
-  <form method="post">
-    <label for="new_quantity">Nouvelle quantité:</label>
-    <input type="number" id="new_quantity" name="new_quantity" value="<?php echo $product['qt']; ?>" min="0" required />
-    <br><br>
-    <button type="submit">Enregistrer</button>
-    <a href="dashboard.php">Retour</a>
-  </form>
+  <main id="mainQt">
+    <h5 id="hQt"><p id="p1">Modifier la quantité:</p><hr><p id="p3"> <?php echo htmlspecialchars($product['nom_produit']); ?></p></h5>
+    <p id="p2">Quantité actuelle: <strong><?php echo $product['qt']; ?></strong></p>
+    <form method="post">
+      <label for="new_quantity" id="labelQt">Nouvelle quantité:</label>
+      <input type="number" id="new_quantity" name="new_quantity" value="<?php echo $product['qt']; ?>" min="0" required />
+      <br><br>
+      <hr>
+      <button type="submit" class = "btn btn-info" id="btnSave">Enregistrer</button>
+    </form>
+  </main>
 </body>
 </html>

@@ -27,8 +27,8 @@
                               </div>
                             </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnFermer">Fermer</button>
+                    <button type="submit" class="btn btn-info" id="btnAjouter">Ajouter au panier</button>
                 </div>  
                 </div>
 

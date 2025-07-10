@@ -1,8 +1,9 @@
 #mainCart{
     display: wrap;
-    border: 1px solid black;
     border-radius: 10px;
     width: 70%;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgb(112, 104, 104);
 }
 #formEnvoyer{
     display: flex;
@@ -16,5 +17,7 @@
     justify-self: center;
     width: 70%;
 }
-#retour{
+#btnRetour{
+    box-shadow: 2px 4px 10px rgba(117, 117, 117, 0.3);
+    border: 1px solid rgb(179, 179, 179);
 }

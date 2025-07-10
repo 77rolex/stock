@@ -27,7 +27,7 @@ $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP
 
 function renderCartHTML($dao, $cart) {
     if (empty($cart)) {
-        echo "<p><h3 style='text-align: center;'>Votre panier est vide!  :(</h3></p>";
+        echo "<p><h3 style='text-align: center;'>Votre panier est vide!   :(</h3></p>";
     } else {
         echo "<h5><b>Produits dans le panier: </b></h5><ul>";
         foreach ($cart as $product_id => $qt) {

@@ -13,14 +13,14 @@ if (!is_numeric($seuil)){
 
     <form method="get" id="formChercher">
         <div class="input-group mb-3" style="width:100%">
-            <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
+            <input class="form-control" id="shadow1" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
             <button type="submit" class="btn btn-info" id="btnChercher">
                 Chercher
             </button>
         </div>
         <?php if($_SESSION['role']==='formateur'): ?>
             <div class="input-group mb-3" style="width:100%">
-                <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+                <input class="form-control" id="shadow2" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
                 <button type = "submit" name = "fixed" class = "btn btn-info" id="btnFixer">
                     Fixer le seuil
                 </button>
@@ -88,7 +88,7 @@ if (!is_numeric($seuil)){
             <td><?php print ($row["nom_category"]);?></td>
             <?php if($_SESSION['role']==='formateur'): ?>
                 <td>
-                    <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-sm btn-primary" target="_blank">
+                    <a href="qr.php?id=<?php echo $row['id_produit']; ?>" class="btn btn-info" target="_blank">
                         Voir QR Code  
                     </a><?php print $alerte ? '<div class = "reserve_color alerte"></div>' : "" ;?>
                 </td>
