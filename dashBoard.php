@@ -44,7 +44,7 @@ if (!is_numeric($seuil)){
 <form method="get" class="mb-4">
     <div class="input-group mb-3" style="width:100%">
     <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
-    <button type="submit" class="btn btn-info">Search</button>
+    <button type="submit" class="btn btn-info">Chercher</button>
     </div>
     <?php if($_SESSION['role']==='formateur'): ?>
         <div class="input-group mb-3" style="width:100%">
