@@ -27,9 +27,9 @@ $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP
 
 function renderCartHTML($dao, $cart) {
     if (empty($cart)) {
-        echo "<p>Votre panier est vide.</p>";
+        echo "<p><h3 style='text-align: center;'>Votre panier est vide!  :(</h3></p>";
     } else {
-        echo "<b>Produits dans le panier: </b><ul>";
+        echo "<h5><b>Produits dans le panier: </b></h5><ul>";
         foreach ($cart as $product_id => $qt) {
             $product = $dao->getProductById($product_id);
             echo "<li>" . htmlspecialchars($product['nom_produit']) . " - $qt pièce(s)</li>";
@@ -40,6 +40,7 @@ function renderCartHTML($dao, $cart) {
         }
         echo "</ul>";
         echo '<form action="envoyer.php" method="post" id="formEnvoyer">
+                <hr>
                 <button type="submit" class = "btn btn-info">Envoyer la commande</button>
               </form>';
     }
@@ -53,13 +54,18 @@ if ($isAjax) {
 ?>
 
 <main class="container mt-3" id="mainCart">
-    <?php renderCartHTML($dao, $cart); ?>
+    
+        <?php renderCartHTML($dao, $cart); ?>
+    
+   
+    
 </main>
-
-<form action="index.php" method="post">
-    <button class = "btn btn-info">
-        <-Retour vers le stock
-    </button>
-</form>
+<article id="panierVide">
+    <form action="index.php" method="post" id="retour">
+            <button class = "btn btn-info" id="btnRetour">
+                <-Retour vers le stock
+            </button>
+    </form>
+</article>
 
 <?php require_once("footer.php") ?>

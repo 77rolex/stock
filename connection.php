@@ -29,23 +29,25 @@ if ($_POST) {
 ?>
 
 <main id="mainConnexion">
-  
-  <form action="connection.php" method="post" id="formConnexion">
-    <img src="logo afpa.jpg" alt="img" id="logo">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Nom d'utilisateur :</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" aria-describedby="emailHelp" required>
-      <small class="form-text text-muted">Mettez votre nom d'utilisateur</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Mot de passe :</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1">
-      <small class="form-text text-muted">Mettez votre mot de passe</small>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Se connecter</button>
-  </form>
-
+  <section id="sectionConnection">
+    <form action="connection.php" method="post" id="formConnexion">
+      <img src="logo afpa.jpg" alt="img" id="logo">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nom d'utilisateur :</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" aria-describedby="emailHelp" required>
+        <small class="form-text text-muted">Mettez votre nom d'utilisateur</small>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Mot de passe :</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1">
+        <small class="form-text text-muted">Mettez votre mot de passe</small>
+      </div>
+      <br>
+      <button type="submit" class = "btn btn-info">Se connecter</button>
+      <br>
+    </form>
+  </section>  
 </main>
 
 <?php require_once("footer.php"); ?>

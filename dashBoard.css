@@ -1,9 +1,6 @@
 body{
-    /* display: flex;
-    justify-self: center;
-    width: 95%; */
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-bottom: 10%;
 }
 
@@ -41,8 +38,6 @@ tr.alerte td{
 
 #navPopUp{
     display: flex;
-    /* flex-direction: column;
-    justify-content: space-between; */
 }
 
 #sectionNavForm{
@@ -66,4 +61,5 @@ tr.alerte td{
     justify-self: center;
     height: 15%;
 }
+
 

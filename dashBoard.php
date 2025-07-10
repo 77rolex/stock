@@ -66,7 +66,7 @@ if (!is_numeric($seuil)){
             <th>Unité</th>
             <th>Qty</th>
             <th>Reserve</th>
-            <th>Category</th>
+            <th>Categorie</th>
             <?php if($_SESSION['role']==='formateur'): ?>
                 <th>QR</th>
             <?php endif ?> 

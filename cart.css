@@ -8,3 +8,13 @@
     display: flex;
     justify-content: center;
 }
+#btnRetour{
+    margin-top: 20px;
+}
+#panierVide{
+    display: flex;
+    justify-self: center;
+    width: 70%;
+}
+#retour{
+}

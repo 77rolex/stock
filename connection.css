@@ -1,6 +1,3 @@
-/* #body{
-    background-color: #86bc24;
-} */
 
 #mainConnexion{
     display: flex;
@@ -10,7 +7,7 @@
     width: 30%;
     height: 60%;
     margin-top: 105px;
-    border-radius: 15px;
+    width: 40%;
 }
 
 #formConnexion{
@@ -18,14 +15,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    background-color: #ffffff;
-
 }
 
 #logo{
     width: 90%;
     height: 40%;
+}
+#sectionConnection{
+    margin-top: 100px;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 100%;
 }
