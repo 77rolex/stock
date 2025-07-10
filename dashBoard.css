@@ -41,6 +41,11 @@ tr.alerte td{
 
 #navPopUp{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column;
+    justify-content: space-between; */
+}
+
+#sectionNavForm{
+    display: flex;
     justify-content: space-between;
 }

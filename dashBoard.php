@@ -28,23 +28,25 @@ if (!is_numeric($seuil)){
         <?php endif ?> 
     </form>
 
-    <nav id="navPopUp">
-        <?php if($_SESSION['role']==='formateur'): ?>
-            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Commander
-            </button>
-            <form action="cart.php">
-                <button type="submit" class="btn btn-info" class="w3-display-right">
-                    Panier
+    <section id="sectionNavForm">
+        <nav id="navPopUp">
+            <?php if($_SESSION['role']==='formateur'): ?>
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Commander
                 </button>
-            </form>
-        <?php endif ?>
-    </nav>
-    <form action="deconnection.php" method="post">
-        <button type="submit" name="logout" class="btn btn-info">
-            Se déconnecter
-        </button>
-    </form>
+                <form action="cart.php">
+                    <button type="submit" class="btn btn-info" class="w3-display-right">
+                        Panier
+                    </button>
+                </form>
+            <?php endif ?>
+        </nav>
+        <form action="deconnection.php" method="post">
+            <button type="submit" name="logout" class="btn btn-info">
+                Se déconnecter
+            </button>
+        </form>
+    </section>
 
 </section>
 <!-- <a href="deconnection.php">Se deconnecter</a> -->
