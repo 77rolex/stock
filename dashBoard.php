@@ -13,16 +13,21 @@ if (!is_numeric($seuil)){
 
     <form method="get" id="formChercher">
         <div class="input-group mb-3" style="width:100%">
-        <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
-        <button type="submit" class="btn btn-info">Chercher</button>
+            <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
+            <button type="submit" class="btn btn-info" id="btnChercher">
+                Chercher
+            </button>
         </div>
         <?php if($_SESSION['role']==='formateur'): ?>
             <div class="input-group mb-3" style="width:100%">
-            <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
-            <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
+                <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+                <button type = "submit" name = "fixed" class = "btn btn-info" id="btnFixer">
+                    Fixer le seuil
+                </button>
             </div>
         <?php endif ?> 
     </form>
+
     <nav id="navPopUp">
         <?php if($_SESSION['role']==='formateur'): ?>
             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -94,7 +99,7 @@ if (!is_numeric($seuil)){
 <script>
     $(document).ready(function () {
         $('#myTable').DataTable({
-            "order": [[3, "asc"]], // Tri par défaut sur la 4e colonne (Age)
+            "order": [[3, "asc"]], // Tri par défaut sur la 4e colonne
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
             }
