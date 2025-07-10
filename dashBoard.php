@@ -1,79 +1,47 @@
 <?php
-require_once("DAO.php");
-$dao=new DAOStock();
-$dao->connection();
-
 $produits = $dao->getSearchbar();
-
 
 //$seuil = $dao->getBelowSeuil();
 $seuil = $_GET["seuil"] ?? null;
 if (!is_numeric($seuil)){
     $seuil = null;
 }
-
-
 ?>
 
-<!-- css for reserve color and seuil   -->
-<style>
-   body {
-    background-color: #f8f9fa; /* light grey */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(92, 109, 126); /* Bootstrap text color */
-    }
-    
-    .reserve_color {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        margin-right: 8px;
-        vertical-align: middle;
-    }
-
-    tr.alerte td{
-        background-color:rgb(223, 139, 83);
-        color:rgb(191, 221, 22);
-        font-weight: bold;
-    }
-</style>
-
 <!-- search bar -->
- <div class="container my-5">
-<form method="get" class="mb-4">
-    <div class="input-group mb-3" style="width:100%">
-    <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
-    <button type="submit" class="btn btn-info">Chercher</button>
-    </div>
-    <?php if($_SESSION['role']==='formateur'): ?>
+ <section id="sectionNav">
+
+    <form method="get" id="formChercher">
         <div class="input-group mb-3" style="width:100%">
-        <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
-        <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
+        <input class="form-control" type="text" name="search" placeholder="Des recherches par matériel (saisie texte) ou par référence seront possibles." value="<?php print ($_GET["search"])?? "" ;?>">
+        <button type="submit" class="btn btn-info">Chercher</button>
         </div>
-    <?php endif ?> 
-</form>
-
-<nav id="navPopUp" class="mb-4 text-center">
-    <?php if($_SESSION['role']==='formateur'): ?>
-        <form action="cart.php">
         <?php if($_SESSION['role']==='formateur'): ?>
-            <button type="submit" class="btn btn-info" class="w3-display-right">
-                Panier
+            <div class="input-group mb-3" style="width:100%">
+            <input class="form-control" type = "number" name = "seuil" placeholder = "fixer le seuil d’alerte (quantité minimale) pour déclencher une commande" value = "<?php print ($_GET["seuil"])?? "" ;?>">
+            <button type = "submit" name = "fixed" class = "btn btn-info">Fixer le seuil</button>
+            </div>
+        <?php endif ?> 
+    </form>
+    <nav id="navPopUp">
+        <?php if($_SESSION['role']==='formateur'): ?>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Commander
             </button>
-        <?php endif ?>   
-        </form>
-    <br>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Commander
-        </button>
+            <form action="cart.php">
+                <button type="submit" class="btn btn-info" class="w3-display-right">
+                    Panier
+                </button>
+            </form>
         <?php endif ?>
-        <br><br>  
-</nav>
+    </nav>
+    <form action="deconnection.php" method="post">
+        <button type="submit" name="logout" class="btn btn-info">
+            Se déconnecter
+        </button>
+    </form>
 
-<form action="deconnection.php" method="post" class="mb-4 text-center">
-  <button type="submit" name="logout" class="btn btn-info">Se déconnecter</button>
-</form>
+</section>
 <!-- <a href="deconnection.php">Se deconnecter</a> -->
     <?php if($_SESSION['role']==='formateur'):?>       
             <h1 class="text-center mb-4" style= "text-align:center";>Dashboard Formateur</h1>
@@ -122,7 +90,6 @@ if (!is_numeric($seuil)){
     </tbody>
 
 </table>
-</div>
 
 <script>
     $(document).ready(function () {

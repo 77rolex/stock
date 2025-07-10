@@ -1,0 +1,19 @@
+
+.reserve_color {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+tr.alerte td{
+    background-color:rgb(223, 139, 83);
+    color:rgb(191, 221, 22);
+    font-weight: bold;
+}
+#sectionNav{
+    display: flex;
+    
+}
