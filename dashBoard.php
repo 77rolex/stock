@@ -101,14 +101,12 @@ if (!is_numeric($seuil)){
 </table>
 
 <script>
-    $(document).ready(function () {
-        $('#myTable').DataTable({
-            "order": [[3, "asc"]], // Tri par défaut sur la 4e colonne
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
-            }
-        });
-    });
+    $('#myTable').DataTable({
+    "order": [[3, "asc"]],
+    "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
+    }
+});
 </script>
 <?php $dao->deconnection(); ?>
 
