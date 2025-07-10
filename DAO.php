@@ -75,6 +75,18 @@
 		return $stmt->fetchAll();
 		}
 
+	// QR code verifie et affiche
+
+	public function getAllProducts() {
+		
+		$search_query = "SELECT id_produit, nom_produit, FROM produits";
+		$stmt = $this -> dbh -> prepare ($search_query);
+								$stmt->execute(); // affiche tous les produits	
+								return $stmt->fetchAll();
+	}
+		
+	
+
 	//popUp.php
 	public function getListOfProducts(){
 		$listOfProducts=$this->dbh->prepare("SELECT nom_produit, id_produit FROM produits ORDER BY nom_produit ASC;");
