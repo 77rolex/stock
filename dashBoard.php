@@ -15,7 +15,7 @@ if (!is_numeric($seuil)){
 
 ?>
 
-<!-- css for reserve color and seuil   -->
+<!-- css for reserve color and seuil color   -->
 <style>
    body {
     background-color: #f8f9fa; /* light grey */
