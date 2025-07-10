@@ -3,13 +3,10 @@
   $seuil = $_GET['seuil'] ?? null;
   $products = $dao->getFilteredProducts($search, $seuil);
 ?>
-
 <section id="mainPopUp">
     <form id="addToCartForm">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
             <div class="modal-dialog" id="divCentrePopUp">
-        
                 <div class="modal-content" id="divPopUp">
                             <div class="modal-header">
                                 <h5 class="modal-title">Commandes</h5>
@@ -31,13 +28,8 @@
                     <button type="submit" class="btn btn-info" id="btnAjouter">Ajouter au panier</button>
                 </div>  
                 </div>
-
-                
-
             </div>
-
         </div>
-
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
               <div id="toastSuccess" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
@@ -49,31 +41,31 @@
               </div>
         </div>
     </form>
-
-    
-
 </section>
-
 <script>
-function updateCartUI() {
-  fetch("cart.php")
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById("cartContainer").innerHTML = html;
-    });
-}
-
 document.getElementById("addToCartForm").addEventListener("submit", function(e) {
   e.preventDefault();
-
   const formData = new FormData(this);
-  const checked = formData.getAll("selected_products[]");
-
-  if (checked.length === 0) {
+  const selectedProducts = formData.getAll("selected_products[]");
+  
+  if (selectedProducts.length === 0) {
     alert("Veuillez sélectionner au moins un produit.");
     return;
   }
 
+  let missingQuantity = false;
+
+  selectedProducts.forEach(productId => {
+    const quantityInput = this.querySelector(`[name="quantities[${productId}]"]`);
+    const quantity = quantityInput?.value;
+    if (!quantity || parseInt(quantity) <= 0) {
+      missingQuantity = true;
+    }
+  });
+  if (missingQuantity) {
+    alert("Veuillez saisir une quantité valide (minimum 1) pour chaque produit sélectionné.");
+    return;
+  }
   fetch("cart.php", {
     method: "POST",
     body: formData
@@ -86,7 +78,7 @@ document.getElementById("addToCartForm").addEventListener("submit", function(e) 
     const modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
     modal.hide();
 
-    updateCartUI(); // Обновляем корзину
+    updateCartUI();
   })
   .catch(error => {
     console.error("Erreur :", error);
